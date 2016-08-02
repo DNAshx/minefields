@@ -32,7 +32,7 @@ EXEC(@sql) ";
         #endregion CONSTANTS
 
         #region members
-
+        private bool _alreadyInstalled;
         #endregion members
 
         #region Page Load
@@ -51,15 +51,16 @@ EXEC(@sql) ";
                 if (CheckIsInstall())
                 {
                     InstallTool();
-                    Response.Redirect("/../Success");
+                    Response.Redirect("~/Install/Success");
                 }
                 else
                 {
                     TxtError.Visible = true;
-                    TxtError.Text += "/nTool wasn't installed";
-                    TxtError.Height = new Unit(100, UnitType.Pixel);
+                    TxtError.Text += _alreadyInstalled ? "" : "\nTool wasn't installed";                    
+                    //TxtError.Height = new Unit(100, UnitType.Pixel);
                 }
-                TxtError.Width = new Unit(500, UnitType.Pixel);
+                                    
+                //TxtError.Width = new Unit(500, UnitType.Pixel);
                 TxtConnString.Text = "";
             }
             catch(Exception ex)
@@ -67,6 +68,7 @@ EXEC(@sql) ";
                 TxtError.Visible = true;
                 TxtError.Text = ex.Message;
             }
+            TxtError.Columns = TxtError.Text.Length;
         }
         #endregion Methods
 
@@ -127,6 +129,7 @@ EXEC(@sql) ";
                             if (int.TryParse(reader[0].ToString(), out val) && val == 1)
                             {
                                 TxtError.Text = "Tool already isntalled.";
+                                _alreadyInstalled = true;
                                 return false;
                             }
                         }

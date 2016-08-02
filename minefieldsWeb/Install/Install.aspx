@@ -9,7 +9,7 @@
         <asp:Button runat="server" ID="InstallBtn" OnClick="InstallBtn_Click" Text="Install" />
     </div>
     <div>
-        <asp:TextBox runat="server" ID="TxtError" ReadOnly="true" Visible="false" ForeColor="Red"></asp:TextBox>
+        <asp:TextBox runat="server" ID="TxtError" ReadOnly="true" Wrap="true" Visible="false" ForeColor="Red"></asp:TextBox>
     </div>
     <br />
 </asp:Content>
