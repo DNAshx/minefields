@@ -13,13 +13,49 @@ namespace minefieldsWeb.Install {
     public partial class Install {
         
         /// <summary>
-        /// TxtConnString control.
+        /// TxtServerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtConnString;
+        protected global::System.Web.UI.WebControls.TextBox TxtServerName;
+        
+        /// <summary>
+        /// TxtDataBase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtDataBase;
+        
+        /// <summary>
+        /// TxtLogin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtLogin;
+        
+        /// <summary>
+        /// TxtPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtPassword;
+        
+        /// <summary>
+        /// ChkBxTrustConnection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox ChkBxTrustConnection;
         
         /// <summary>
         /// InstallBtn control.

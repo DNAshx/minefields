@@ -5,8 +5,32 @@
     <h3>Install tool if it's not installed.</h3>
     <p>Insert SQL server connection string and click install.</p>
     <div>
-        <asp:TextBox runat="server" ID="TxtConnString" />
-        <asp:Button runat="server" ID="InstallBtn" OnClick="InstallBtn_Click" Text="Install" />
+        <table>
+            <tr>
+                <td style="padding-right:10px"> <asp:Label runat="server" Text="Server Name" /> </td>
+                <td> <asp:TextBox runat="server" ID="TxtServerName" /> </td>
+            </tr>
+            <tr>
+                <td style="padding-right:10px"> <asp:Label runat="server" Text="Database Name" /> </td>
+                <td> <asp:TextBox runat="server" ID="TxtDataBase" /> </td>
+            </tr>
+            <tr>
+                <td style="padding-right:10px"><asp:Label runat="server" Text="Login" /></td>
+                <td><asp:TextBox runat="server" ID="TxtLogin" /></td>
+            </tr>
+            <tr>
+                <td style="padding-right:10px"><asp:Label runat="server" Text="Password" /></td>
+                <td><asp:TextBox runat="server" ID="TxtPassword" TextMode="Password" /></td>
+            </tr>
+            <tr>                
+                <td colspan="2"><asp:CheckBox runat="server" ID="ChkBxTrustConnection" Text="Trust Connection" OnCheckedChanged="ChkBxTrustConnection_CheckedChanged" AutoPostBack="true"/></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding-right:10px;padding-top:10px" align="right">
+                    <asp:Button runat="server" ID="InstallBtn" OnClick="InstallBtn_Click" Text="Install" />
+                </td>
+            </tr>
+        </table>
     </div>
     <div>
         <asp:TextBox runat="server" ID="TxtError" ReadOnly="true" Wrap="true" Visible="false" ForeColor="Red"></asp:TextBox>

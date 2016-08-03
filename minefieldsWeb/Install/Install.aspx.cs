@@ -47,7 +47,19 @@ EXEC(@sql) ";
         {
             try
             {
-                ConnectionString = TxtConnString.Text;
+                var serverName = TxtServerName.Text;
+                var database = TxtDataBase.Text;
+                var loginName = TxtLogin.Text;
+                var password = TxtPassword.Text;
+                if (ChkBxTrustConnection.Checked)
+                {
+                    ConnectionString = string.Format(@"Server={0};Database={1};Trusted_Connection=True;", serverName, database);
+                }
+                else
+                {
+                    ConnectionString = string.Format(@"Server={0};Database={1};User Id={2};Password={3};", serverName, database, loginName, password);
+                }
+                
                 if (CheckIsInstall())
                 {
                     InstallTool();
@@ -59,9 +71,10 @@ EXEC(@sql) ";
                     TxtError.Text += _alreadyInstalled ? "" : "\nTool wasn't installed";                    
                     //TxtError.Height = new Unit(100, UnitType.Pixel);
                 }
-                                    
+
                 //TxtError.Width = new Unit(500, UnitType.Pixel);
-                TxtConnString.Text = "";
+                TxtLogin.Text = "";
+                TxtPassword.Text = "";
             }
             catch(Exception ex)
             {
@@ -146,5 +159,19 @@ EXEC(@sql) ";
             return true;
         }
         #endregion helpers
+
+        protected void ChkBxTrustConnection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                TxtLogin.Enabled = false;
+                TxtPassword.Enabled = false;
+            }
+            else
+            {
+                TxtLogin.Enabled = true;
+                TxtPassword.Enabled = true;
+            }
+        }
     }
 }
