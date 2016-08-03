@@ -18,9 +18,7 @@ namespace minefieldsWeb.Install
         #endregion
         #region CONSTANTS
         private const string CREATE_SCHEMA_CMD = @" CREATE SCHEMA [Minefields] AUTHORIZATION [dbo]";
-        private const string CHECK_SCHEME = @"SELECT  1
-FROM    information_schema.schemata
-WHERE   schema_name = 'Minefields'";
+        private const string CHECK_SCHEME = @"SELECT 1 FROM sys.schemas WHERE name = 'Minefields'";
         private const string CREATE_USERS_TABLE = @"CREATE TABLE [Minefields].[Users](
 	[UserId] [int] IDENTITY(1,1) NOT NULL,
 	[UserName] [nchar](50) NOT NULL,
