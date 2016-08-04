@@ -213,6 +213,7 @@
     <None Include="Properties\PublishProfiles\minefield.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Install\AddUser.aspx" />
+    <Content Include="Install\ChangePassword.aspx" />
     <Content Include="Install\Install.aspx" />
     <Content Include="Install\Success.aspx" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
@@ -404,6 +405,13 @@
     </Compile>
     <Compile Include="Install\AddUser.aspx.designer.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Install\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Install\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Install\Install.aspx.cs">
       <DependentUpon>Install.aspx</DependentUpon>

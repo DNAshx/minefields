@@ -11,22 +11,38 @@ namespace minefieldsWeb.Install
     public partial class Install : System.Web.UI.Page
     {
         #region property
-        public string ConnectionString
+        public static string ConnectionString
         {
             get; private set;
         }
+        public static string ServerName
+        { get; private set; }
         #endregion
         #region CONSTANTS
-        private const string CREATE_SCHEMA_CMD = @" CREATE SCHEMA [Minefields] AUTHORIZATION [dbo]";
-        private const string CHECK_SCHEME = @"SELECT 1 FROM sys.schemas WHERE name = 'Minefields'";
-        private const string CREATE_USERS_TABLE = @"CREATE TABLE [Minefields].[Users](
+        private const string CREATE_DATABASE_CMD = @"CREATE DATABASE [Minefields]";
+        private const string CHECK_DB = @"SELECT 1 FROM sys.databases WHERE name = 'Minefields'";
+        private const string CREATE_USERS_TABLE = @"USE [Minefields]
+CREATE TABLE [Users](
 	[UserId] [int] IDENTITY(1,1) NOT NULL,
 	[UserName] [nchar](50) NOT NULL,
-	[IsAllowed] [bit] NOT NULL
+	[IsAllowed] [bit] NOT NULL,
+    [Admin] [bit] NOT NULL,
+    CONSTRAINT PK_Users_UserId PRIMARY KEY CLUSTERED (UserId)
 ) ON [PRIMARY]";
-        private const string CREATE_USER_CMD = @"declare @user varchar(50) = SYSTEM_USER
-declare @sql varchar(2000) = 'CREATE USER [Minefield] for LOGIN [' + @user + '] WITH DEFAULT_SCHEMA=[Minefields];'
-EXEC(@sql) ";
+        private const string INSERT_USERS_TABLE = @"declare @user varchar(50) = SYSTEM_USER
+ INSERT INTO Users
+ SELECT @user, 1, 1";
+        private const string CREATE_USER_CMD = @"USE [master]
+CREATE LOGIN [Minefields] WITH PASSWORD=N'Pa$$w0rd!1', DEFAULT_DATABASE=[Minefields], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+ALTER SERVER ROLE [securityadmin] ADD MEMBER [Minefields]
+USE [Minefields]
+
+CREATE USER [Minefields] FOR LOGIN [Minefields]
+
+ALTER ROLE [db_owner] ADD MEMBER [Minefields]
+";
+        
+        private const string DB_NAME = "Minefields";
         #endregion CONSTANTS
 
         #region members
@@ -45,23 +61,24 @@ EXEC(@sql) ";
         {
             try
             {
-                var serverName = TxtServerName.Text;
-                var database = TxtDataBase.Text;
+                ServerName = TxtServerName.Text;                
                 var loginName = TxtLogin.Text;
                 var password = TxtPassword.Text;
                 if (ChkBxTrustConnection.Checked)
                 {
-                    ConnectionString = string.Format(@"Server={0};Database={1};Trusted_Connection=True;", serverName, database);
+                    ConnectionString = string.Format(@"Server={0};Trusted_Connection=True;", ServerName);//Database={1};
                 }
                 else
                 {
-                    ConnectionString = string.Format(@"Server={0};Database={1};User Id={2};Password={3};", serverName, database, loginName, password);
+                    ConnectionString = string.Format(@"Server={0};User Id={1};Password={2};", ServerName, loginName, password);//Database={1};
                 }
                 
                 if (CheckIsInstall())
-                {
+                {                    
                     InstallTool();
-                    Response.Redirect("~/Install/Success");
+                    //check for errors
+                    if (!TxtError.Visible)
+                        Response.Redirect("~/Install/ChangePassword");
                 }
                 else
                 {
@@ -94,16 +111,33 @@ EXEC(@sql) ";
                 {
                     conn.Open();
 
-                    //create scheme as it is not exists
-                    var sqlCmd = new SqlCommand(CREATE_SCHEMA_CMD, conn);
+                    //create DB as it is not exists
+                    var sqlCmd = new SqlCommand(CREATE_DATABASE_CMD, conn);
                     sqlCmd.ExecuteNonQuery();
-
-                    //change CREATE USER FOR current [LOGIN]
-                    sqlCmd = new SqlCommand(CREATE_USER_CMD, conn);
+                }
+                catch (SqlException ex)
+                {
+                    TxtError.Visible = true;
+                    TxtError.Text = ex.Message;
+                } 
+                }
+            ConnectionString = ConnectionString.Insert(ConnectionString.IndexOf(';') + 1, "Database=Minefields;");
+            conn = new SqlConnection(ConnectionString);
+            using (conn)
+            {
+                try
+                {
+                    conn.Open();
+                    //change CREATE LOGIN and DB USER
+                    var sqlCmd = new SqlCommand(CREATE_USER_CMD, conn);
                     sqlCmd.ExecuteNonQuery();
 
                     //create Users table
                     sqlCmd = new SqlCommand(CREATE_USERS_TABLE, conn);
+                    sqlCmd.ExecuteReader();
+
+                    //Add User to the table
+                    sqlCmd = new SqlCommand(INSERT_USERS_TABLE, conn);
                     sqlCmd.ExecuteReader();
                 }
                 catch (SqlException ex)
@@ -132,7 +166,7 @@ EXEC(@sql) ";
                         conn.Open();
 
                         //running commad to check is Scheme exists
-                        var sqlCmd = new SqlCommand(CHECK_SCHEME, conn);
+                        var sqlCmd = new SqlCommand(CHECK_DB, conn);
                         var reader = sqlCmd.ExecuteReader();
                         while (reader.Read())
                         {

@@ -12,7 +12,7 @@
             </tr>
             <tr>
                 <td style="padding-right:10px"> <asp:Label runat="server" Text="Database Name" /> </td>
-                <td> <asp:TextBox runat="server" ID="TxtDataBase" /> </td>
+                <td> <asp:TextBox runat="server" ID="TxtDataBase" Text="Minefields" ReadOnly="true" /> </td>
             </tr>
             <tr>
                 <td style="padding-right:10px"><asp:Label runat="server" Text="Login" /></td>
@@ -23,7 +23,7 @@
                 <td><asp:TextBox runat="server" ID="TxtPassword" TextMode="Password" /></td>
             </tr>
             <tr>                
-                <td colspan="2"><asp:CheckBox runat="server" ID="ChkBxTrustConnection" Text="Trust Connection" OnCheckedChanged="ChkBxTrustConnection_CheckedChanged" AutoPostBack="true"/></td>
+                <td colspan="2"><asp:CheckBox runat="server" ID="ChkBxTrustConnection" Text="Windows Authorization" OnCheckedChanged="ChkBxTrustConnection_CheckedChanged" AutoPostBack="true"/></td>
             </tr>
             <tr>
                 <td colspan="2" style="padding-right:10px;padding-top:10px" align="right">
