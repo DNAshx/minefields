@@ -1,4 +1,6 @@
-﻿using System;
+﻿using minefieldsWeb.Install.Helper;
+using minefieldsWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -18,12 +20,19 @@ namespace minefieldsWeb.Install
 
         }
 
-        protected void Unnamed1_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
+            //save to configuration new connectionString
             var configuration = WebConfigurationManager.OpenWebConfiguration("~");
             var section = (ConnectionStringsSection)configuration.GetSection("connectionStrings");
-            var connectionString = string.Format(section.ConnectionStrings["MinefieldConnection"].ConnectionString, Install.ServerName, TxtPassword.Text);
-            section.ConnectionStrings["MinefieldConnection"].ConnectionString = connectionString;
+            var connectionString = string.Format(section.ConnectionStrings["MinefieldsContext"].ConnectionString, Install.ServerName, TxtPassword.Text);
+            section.ConnectionStrings["MinefieldsContext"].ConnectionString = connectionString;            
+
+            //save to configuration Installed flag widh admin name
+            var installConfig = (InstallSection)configuration.GetSection("InstallingGroup/install");
+            installConfig.Isntalled = true;
+            installConfig.UserName = HttpContext.Current.User.Identity.Name;
+
             configuration.Save();
 
             _scriptChangePassword = string.Format(_scriptChangePassword, TxtPassword.Text);

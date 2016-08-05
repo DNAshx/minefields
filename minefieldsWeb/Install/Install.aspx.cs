@@ -120,7 +120,7 @@ ALTER ROLE [db_owner] ADD MEMBER [Minefields]
                     TxtError.Visible = true;
                     TxtError.Text = ex.Message;
                 } 
-                }
+            }
             ConnectionString = ConnectionString.Insert(ConnectionString.IndexOf(';') + 1, "Database=Minefields;");
             conn = new SqlConnection(ConnectionString);
             using (conn)
@@ -132,13 +132,13 @@ ALTER ROLE [db_owner] ADD MEMBER [Minefields]
                     var sqlCmd = new SqlCommand(CREATE_USER_CMD, conn);
                     sqlCmd.ExecuteNonQuery();
 
-                    //create Users table
-                    sqlCmd = new SqlCommand(CREATE_USERS_TABLE, conn);
-                    sqlCmd.ExecuteReader();
+                    ////create Users table
+                    //sqlCmd = new SqlCommand(CREATE_USERS_TABLE, conn);
+                    //sqlCmd.ExecuteNonQuery();
 
-                    //Add User to the table
-                    sqlCmd = new SqlCommand(INSERT_USERS_TABLE, conn);
-                    sqlCmd.ExecuteReader();
+                    ////Add User to the table
+                    //sqlCmd = new SqlCommand(INSERT_USERS_TABLE, conn);
+                    //sqlCmd.ExecuteNonQuery();
                 }
                 catch (SqlException ex)
                 {

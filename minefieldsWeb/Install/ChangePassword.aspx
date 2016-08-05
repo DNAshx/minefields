@@ -11,7 +11,7 @@
             <td><asp:TextBox runat="server" ID="TxtPassword" TextMode="Password" /></td>
         </tr>
         <tr>
-            <td colspan="2" align="right"><asp:Button runat="server" Text="Save" OnClick="Unnamed1_Click" /></td>
+            <td colspan="2" align="right"><asp:Button runat="server" ID="BtnSave" Text="Save" OnClick="BtnSave_Click" /></td>
         </tr>
      </table>
     <div>

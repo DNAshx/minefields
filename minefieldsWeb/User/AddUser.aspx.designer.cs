@@ -7,18 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace minefieldsWeb.Account {
+namespace minefieldsWeb.User {
     
     
-    public partial class OpenAuthProviders {
+    public partial class AddUser {
         
         /// <summary>
-        /// providerDetails control.
+        /// TxtUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView providerDetails;
+        protected global::System.Web.UI.WebControls.TextBox TxtUserName;
+        
+        /// <summary>
+        /// BtnAddUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnAddUser;
     }
 }
