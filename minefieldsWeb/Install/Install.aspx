@@ -16,14 +16,16 @@
             </tr>
             <tr>
                 <td style="padding-right:10px"><asp:Label runat="server" Text="Login" /></td>
-                <td><asp:TextBox runat="server" ID="TxtLogin" /></td>
+                <td><asp:TextBox runat="server" ID="TxtLogin" Enabled="false" /></td>
             </tr>
             <tr>
                 <td style="padding-right:10px"><asp:Label runat="server" Text="Password" /></td>
-                <td><asp:TextBox runat="server" ID="TxtPassword" TextMode="Password" /></td>
+                <td><asp:TextBox runat="server" ID="TxtPassword" Enabled="false" TextMode="Password" /></td>
             </tr>
             <tr>                
-                <td colspan="2"><asp:CheckBox runat="server" ID="ChkBxTrustConnection" Text="Windows Authorization" OnCheckedChanged="ChkBxTrustConnection_CheckedChanged" AutoPostBack="true"/></td>
+                <td colspan="2"><asp:CheckBox runat="server" ID="ChkBxTrustConnection" Text="Windows Authorization" 
+                    OnCheckedChanged="ChkBxTrustConnection_CheckedChanged" AutoPostBack="true"
+                    Checked="true"/></td>
             </tr>
             <tr>
                 <td colspan="2" style="padding-right:10px;padding-top:10px" align="right">

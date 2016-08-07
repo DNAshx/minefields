@@ -1,0 +1,60 @@
+H1
+{
+	font-size: larger;
+	color: #FFFFFF;
+	font-family: Arial;
+}
+
+.Grid
+{
+	border: solid 1px Tan;
+}
+
+.Grid td
+{
+	border: solid 3px #FFFFFF;
+	margin: 3px 3px 3px 3px;
+	font-family: Arial;
+	padding: 5px 5px 5px 5px;
+	text-align: center;
+}
+
+.GridHeader
+{
+	font-weight: bold;
+	background-color: #d7e5f0;
+}
+
+.GridHeader a
+{
+	text-decoration: none;
+	color: #d7e5f0;
+	padding: 0px 15px 0px 15px;
+}
+
+.GridHeader a:hover
+{
+	text-decoration: underline;
+	background: Tan url(images/spin.gif) no-repeat 0 100%;
+}
+
+.GridItem, .GridAltItem
+{
+	font-size: smaller;
+}
+
+.GridItem
+{
+	background-color: #75a4cb;
+}
+
+.GridAltItem
+{
+	background-color: #428bca;
+}
+
+.GridPager
+{
+	font-size: small;
+	background-color: #d7e5f0;        
+}

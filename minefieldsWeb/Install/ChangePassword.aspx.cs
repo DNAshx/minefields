@@ -30,7 +30,7 @@ namespace minefieldsWeb.Install
 
             //save to configuration Installed flag widh admin name
             var installConfig = (InstallSection)configuration.GetSection("InstallingGroup/install");
-            installConfig.Isntalled = true;
+            installConfig.Installed = true;
             installConfig.UserName = HttpContext.Current.User.Identity.Name;
 
             configuration.Save();

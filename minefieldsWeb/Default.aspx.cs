@@ -12,13 +12,15 @@ namespace minefieldsWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            var installed = Config.ConfigSection.Isntalled;
-            var userName = Config.ConfigSection.UserName;
-            var currUserName = HttpContext.Current.User.Identity.Name;
+            if (!Page.IsPostBack)
+            {
+                //TODO: fix this
+                //var installed = Config.Installed;
 
-            installedDiv.Visible = installed;
-            notInstalledDiv.Visible = !installed;
-            administrationDiv.Visible = userName == currUserName;            
+                //installedDiv.Visible = installed;
+                //notInstalledDiv.Visible = !installed;
+                //administrationDiv.Visible = Config.IsAdmin;
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace minefieldsWeb.Models
     {
         // Create a "installed" attribute.
         [ConfigurationProperty("installed", DefaultValue = "false", IsRequired = false)]
-        public Boolean Isntalled
+        public Boolean Installed
         {
             get
             {
@@ -33,6 +33,20 @@ namespace minefieldsWeb.Models
             set
             {
                 this["userName"] = value;
+            }
+        }
+
+        // Create a "disabled" attribute.
+        [ConfigurationProperty("disabledTool", DefaultValue = "false", IsRequired = false)]
+        public Boolean Disabled
+        {
+            get
+            {
+                return (Boolean)this["disabledTool"];
+            }
+            set
+            {
+                this["disabledTool"] = value;
             }
         }
     }

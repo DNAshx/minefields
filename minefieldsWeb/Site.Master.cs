@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using minefieldsWeb.Install.Helper;
 
 namespace minefieldsWeb
 {
@@ -69,13 +70,16 @@ namespace minefieldsWeb
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            var installed = Config.Installed;
 
+            addUserLink.Disabled = !installed || !Config.IsAdmin;
+            instaLink.Visible = !installed;
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
-        {
-            Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-        }
+        {            
+            Response.Redirect("~/AccessDenied");
+        }        
     }
 
 }

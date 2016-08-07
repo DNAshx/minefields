@@ -52,7 +52,7 @@ ALTER ROLE [db_owner] ADD MEMBER [Minefields]
         #region Page Load
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            TxtLogin.Text = Context.User.Identity.Name;
         }
         #endregion Page Load
 
@@ -66,7 +66,7 @@ ALTER ROLE [db_owner] ADD MEMBER [Minefields]
                 var password = TxtPassword.Text;
                 if (ChkBxTrustConnection.Checked)
                 {
-                    ConnectionString = string.Format(@"Server={0};Trusted_Connection=True;", ServerName);//Database={1};
+                    ConnectionString = string.Format(@"Server={0};persist security info=True;Integrated Security=SSPI;", ServerName);//Database={1};
                 }
                 else
                 {
@@ -97,6 +97,20 @@ ALTER ROLE [db_owner] ADD MEMBER [Minefields]
                 TxtError.Text = ex.Message;
             }
             TxtError.Columns = TxtError.Text.Length;
+        }
+
+        protected void ChkBxTrustConnection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((CheckBox)sender).Checked)
+            {
+                TxtLogin.Enabled = false;
+                TxtPassword.Enabled = false;
+            }
+            else
+            {
+                TxtLogin.Enabled = true;
+                TxtPassword.Enabled = true;
+            }
         }
         #endregion Methods
 
@@ -192,18 +206,6 @@ ALTER ROLE [db_owner] ADD MEMBER [Minefields]
         }
         #endregion helpers
 
-        protected void ChkBxTrustConnection_CheckedChanged(object sender, EventArgs e)
-        {
-            if (((CheckBox)sender).Checked)
-            {
-                TxtLogin.Enabled = false;
-                TxtPassword.Enabled = false;
-            }
-            else
-            {
-                TxtLogin.Enabled = true;
-                TxtPassword.Enabled = true;
-            }
-        }
+        
     }
 }

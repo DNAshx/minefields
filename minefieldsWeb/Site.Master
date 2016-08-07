@@ -6,6 +6,9 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title><%: Page.Title %> - MineFields Application</title>
 
     <asp:PlaceHolder runat="server">
@@ -16,6 +19,17 @@
 
 </head>
 <body>
+   <%-- <script type="text/javascript">
+        function HandleResult(arg, context) {
+            window.location = "/";
+        }
+    </script>    
+    <script>
+        CallServer('LoGout', '');
+            var Backlen=history.length;   
+        history.go(-Backlen);   
+        window.location.href = "/";
+    </script>--%>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -51,9 +65,11 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/Install/Install">Install</a></li>                        
+                        <li><a runat="server" id="instaLink" href="~/Install/Install">Install</a></li>                        
+                        <li><a runat="server" id="addUserLink" href="~/User/AddUser">Add New User</a></li> 
                     </ul>
-                    <!--<asp:LoginView runat="server" ViewStateMode="Disabled">
+                    <!--<asp:Label runat="server">Welcome, <%: Context.User.Identity.GetUserName()  %> !</asp:Label>-->
+                    <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a runat="server" href="~/Account/Register">Register</a></li>
@@ -62,13 +78,13 @@
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
+                                <li><asp:Label runat="server" ForeColor="White">Hello, <%: Context.User.Identity.GetUserName()  %> !</asp:Label></li>
+                               <li>
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
                         </LoggedInTemplate>
-                    </asp:LoginView>-->
+                    </asp:LoginView>
                 </div>
             </div>
         </div>
