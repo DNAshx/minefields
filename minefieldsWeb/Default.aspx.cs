@@ -14,12 +14,11 @@ namespace minefieldsWeb
         {
             if (!Page.IsPostBack)
             {
-                //TODO: fix this
-                //var installed = Config.Installed;
+                var installed = Config.Installed;
 
-                //installedDiv.Visible = installed;
-                //notInstalledDiv.Visible = !installed;
-                //administrationDiv.Visible = Config.IsAdmin;
+                installedDiv.Visible = installed;
+                notInstalledDiv.Visible = !installed;
+                administrationDiv.Visible = Config.IsAdmin;
             }
         }
     }
