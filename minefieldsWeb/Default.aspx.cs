@@ -16,10 +16,11 @@ namespace minefieldsWeb
             {
                 var installed = Config.Installed;
 
-                installedDiv.Visible = installed;
-                notInstalledDiv.Visible = !installed;
-                administrationDiv.Visible = Config.IsAdmin;
+                PanelInstalled.Visible = installed;
+                PanelInstall.Visible = !installed;
+                PanelAddUser.Visible = installed && Config.IsAdmin && !Config.IsDisabled;
+                PanelDisabled.Visible = Config.IsDisabled;
             }
-        }
+        }       
     }
 }

@@ -10,5 +10,6 @@ namespace minefieldsWeb.DAL
     public class MinefieldsContext : DbContext
     {
         public DbSet<UserDb> Users { get; set; }
+        public DbSet<PropertyDb> Properties { get; set; }
     }
 }

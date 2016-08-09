@@ -31,6 +31,15 @@ namespace minefieldsWeb {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor addUserLink;
         
         /// <summary>
+        /// enabledLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor enabledLink;
+        
+        /// <summary>
         /// MainContent control.
         /// </summary>
         /// <remarks>

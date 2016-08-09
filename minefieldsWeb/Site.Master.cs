@@ -72,8 +72,9 @@ namespace minefieldsWeb
         {
             var installed = Config.Installed;
 
-            addUserLink.Disabled = !installed || !Config.IsAdmin;
+            addUserLink.Visible = installed && Config.IsAdmin && !Config.IsDisabled;
             instaLink.Visible = !installed;
+            enabledLink.Visible = installed && Config.IsAdmin;
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

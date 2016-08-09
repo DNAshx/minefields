@@ -17,7 +17,7 @@ namespace minefieldsWeb.User
         {
             if (!Page.IsPostBack)
             {
-                if (!Config.IsAdmin || !Config.Installed)
+                if (!Config.IsAdmin || !Config.Installed || Config.IsDisabled)
                 {
                     Response.Redirect("~/");
                 }

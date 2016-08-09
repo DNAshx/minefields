@@ -13,30 +13,39 @@ namespace minefieldsWeb {
     public partial class _Default {
         
         /// <summary>
-        /// notInstalledDiv control.
+        /// PanelInstall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notInstalledDiv;
+        protected global::System.Web.UI.WebControls.Panel PanelInstall;
         
         /// <summary>
-        /// installedDiv control.
+        /// PanelInstalled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl installedDiv;
+        protected global::System.Web.UI.WebControls.Panel PanelInstalled;
         
         /// <summary>
-        /// administrationDiv control.
+        /// PanelDisabled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl administrationDiv;
+        protected global::System.Web.UI.WebControls.Panel PanelDisabled;
+        
+        /// <summary>
+        /// PanelAddUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAddUser;
     }
 }

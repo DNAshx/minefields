@@ -19,17 +19,6 @@
 
 </head>
 <body>
-   <%-- <script type="text/javascript">
-        function HandleResult(arg, context) {
-            window.location = "/";
-        }
-    </script>    
-    <script>
-        CallServer('LoGout', '');
-            var Backlen=history.length;   
-        history.go(-Backlen);   
-        window.location.href = "/";
-    </script>--%>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -67,6 +56,7 @@
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" id="instaLink" href="~/Install/Install">Install</a></li>                        
                         <li><a runat="server" id="addUserLink" href="~/User/AddUser">Add New User</a></li> 
+                        <li><a runat="server" id="enabledLink" href="~/Install/Enabled">Enable/Disable</a></li> 
                     </ul>
                     <!--<asp:Label runat="server">Welcome, <%: Context.User.Identity.GetUserName()  %> !</asp:Label>-->
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
