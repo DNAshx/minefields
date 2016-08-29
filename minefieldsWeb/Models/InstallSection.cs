@@ -34,20 +34,6 @@ namespace minefieldsWeb.Models
             {
                 this["userName"] = value;
             }
-        }
-
-        // Create a "disabled" attribute.
-        [ConfigurationProperty("disabledTool", DefaultValue = "false", IsRequired = false)]
-        public Boolean Disabled
-        {
-            get
-            {
-                return (Boolean)this["disabledTool"];
-            }
-            set
-            {
-                this["disabledTool"] = value;
-            }
-        }
+        }       
     }
 }

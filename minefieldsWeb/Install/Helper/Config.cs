@@ -47,12 +47,20 @@ namespace minefieldsWeb.Install.Helper
         
         public static bool GetDisabled()
         {
-            using (var db = new MinefieldsContext())
+            if (Installed)
             {
-                var property = db.Properties.First(x => x.Name == IS_DISABLE_NAME);
-                if (property != null)
+                using (var db = new MinefieldsContext())
                 {
-                    return bool.Parse(property.Value);
+                    if (db.Properties.Count() == 0)
+                    {
+                        db.Properties.Add(new PropertyDb() { Name = IS_DISABLE_NAME, Value = false.ToString() });
+                        db.SaveChanges();
+                    }
+                    var property = db.Properties.FirstOrDefault(x => x.Name == IS_DISABLE_NAME);
+                    if (property != null)
+                    {
+                        return bool.Parse(property.Value);
+                    }
                 }
             }
             return false;

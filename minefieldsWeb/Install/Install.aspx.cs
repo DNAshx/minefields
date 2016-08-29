@@ -37,9 +37,9 @@ CREATE LOGIN [Minefields] WITH PASSWORD=N'Pa$$w0rd!1', DEFAULT_DATABASE=[Minefie
 ALTER SERVER ROLE [securityadmin] ADD MEMBER [Minefields]
 USE [Minefields]
 
-CREATE USER [Minefields] FOR LOGIN [Minefields]
+CREATE USER [Minefields] FOR LOGIN [Minefields];
 
-ALTER ROLE [db_owner] ADD MEMBER [Minefields]
+EXEC sp_addrolemember 'db_owner', 'Minefields'
 ";
         
         private const string DB_NAME = "Minefields";
